@@ -1,15 +1,18 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
-LDFLAGS = -lm
-TARGET = main
+CFLAGS = -Wall -Wextra -Werror -g -fPIC
+LDFLAGS = -shared
+TARGET = main libpoisson.so
 OBJECTS = main.o poisson.o
 
 .PHONY: all clean debug
 
 all: $(TARGET)
 
-$(TARGET): $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(TARGET) $(LDFLAGS)
+main: main.o poisson.o
+	$(CC) $(CFLAGS) $(OBJECTS) -o main -lm
+
+libpoisson.so: poisson.o
+	$(CC) $(CFLAGS) $(LDFLAGS) poisson.o -o libpoisson.so
 
 main.o: main.c poisson.h
 	$(CC) $(CFLAGS) -c main.c
