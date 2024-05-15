@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
-#include "poisson.h"
+
 
 double factorial(int n) {
     if (n == 0) {
@@ -12,9 +13,28 @@ double factorial(int n) {
 
 double poisson(double lambda, int k) {
     if (k < 0) {
-        return 0; // לא ניתן שיהיו מספר אירועים שלילי
+        return 0;
     }
 
-    double pxk = pow(lambda, k) * exp(-lambda) / factorial(k);
-    return pxk;
+    double result = pow(lambda, k) * exp(-lambda) / factorial(k);
+    return result;
 }
+
+//**To compile the program execute the compilation command: gcc main.c -o poisson -lm
+//**To run the program Run in Bash: ./poisson <lambda> <k>
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        printf("Error\n");
+        return 1;
+    }
+
+    double lambda = atof(argv[1]);
+    int k = atoi(argv[2]);
+
+    double result = poisson(lambda, k);
+    printf("px(%d) = %.4f\n", k, result);
+
+    return 0;
+}
+
