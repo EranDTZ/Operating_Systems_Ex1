@@ -1,49 +1,69 @@
 #include "dijkstra.hpp"
+#include <iostream>
+#include <climits> // כותרת נוספת
 
-Graph::Graph(int vertices) : V(vertices), adjMatrix(vertices, std::vector<int>(vertices, 0)) {}
+Dijkstra::Dijkstra() {}
 
-void Graph::addEdge(int src, int dest, int weight) {
-    adjMatrix[src][dest] = weight;
-    adjMatrix[dest][src] = weight; // Assuming undirected graph
+void Dijkstra::initialize(std::vector<std::vector<int>>::size_type V) {
+    this->graph.resize(V, std::vector<int>(V));
 }
 
-void Graph::dijkstra(int src) {
-    std::vector<int> dist(V, std::numeric_limits<int>::max());
-    std::vector<bool> sptSet(V, false);
-
-    dist[src] = 0;
-
-    for (int count = 0; count < V - 1; count++) {
-        int u = minDistance(dist, sptSet);
-        sptSet[u] = true;
-
-        for (int v = 0; v < V; v++) {
-            if (!sptSet[v] && adjMatrix[u][v] && dist[u] != std::numeric_limits<int>::max() &&
-                dist[u] + adjMatrix[u][v] < dist[v]) {
-                dist[v] = dist[u] + adjMatrix[u][v];
-            }
+void Dijkstra::readGraph() {
+    std::cout << "Enter the adjacency matrix of the graph:\n";
+    for (std::vector<int>::size_type i = 0; i < graph.size(); i++) {
+        for (std::vector<int>::size_type j = 0; j < graph[i].size(); j++) {
+            std::cin >> graph[i][j];
         }
     }
-
-    printSolution(dist);
 }
 
-int Graph::minDistance(std::vector<int> &dist, std::vector<bool> &sptSet) {
-    int min = std::numeric_limits<int>::max(), min_index;
+int Dijkstra::minDistance(const std::vector<int>& dist, const std::vector<bool>& sptSet) {
+    int min = INT_MAX, min_index;
 
-    for (int v = 0; v < V; v++) {
-        if (!sptSet[v] && dist[v] <= min) {
-            min = dist[v];
-            min_index = v;
-        }
-    }
+    for (std::vector<int>::size_type v = 0; v < graph.size(); v++)
+        if (sptSet[v] == false && dist[v] <= min)
+            min = dist[v], min_index = v;
 
     return min_index;
 }
 
-void Graph::printSolution(std::vector<int> &dist) {
+void Dijkstra::printSolution(const std::vector<int>& dist) {
     std::cout << "Vertex \t\t Distance from Source\n";
-    for (int i = 0; i < V; i++) {
-        std::cout << i << "\t\t\t\t" << dist[i] << std::endl;
+    for (std::vector<int>::size_type i = 0; i < graph.size(); i++)
+        std::cout << i << "\t\t\t\t" << dist[i] << "\n";
+}
+
+void Dijkstra::shortestPath() {
+    std::vector<int> dist(graph.size(), INT_MAX);
+    std::vector<bool> sptSet(graph.size(), false);
+
+    // Distance of source vertex from itself is always 0
+    dist[0] = 0;
+
+    // Find shortest path for all vertices
+    for (std::vector<int>::size_type count = 0; count < graph.size() - 1; count++) {
+        // Pick the minimum distance vertex from the set of
+        // vertices not yet processed. u is always equal to
+        // src in the first iteration.
+        int u = minDistance(dist, sptSet);
+
+        // Mark the picked vertex as processed
+        sptSet[static_cast<size_t>(u)] = true;
+
+        // Update dist value of the adjacent vertices of the
+        // picked vertex.
+        for (std::vector<int>::size_type v = 0; v < graph.size(); v++)
+
+            // Update dist[v] only if is not in sptSet,
+            // there is an edge from u to v, and total
+            // weight of path from src to  v through u is
+            // smaller than current value of dist[v]
+            if (!sptSet[v] && graph[static_cast<size_t>(u)][v]
+                && dist[static_cast<size_t>(u)] != INT_MAX
+                && dist[static_cast<size_t>(u)] + graph[static_cast<size_t>(u)][v] < dist[v])
+                dist[v] = dist[static_cast<size_t>(u)] + graph[static_cast<size_t>(u)][v];
     }
+
+    // print the constructed distance array
+    printSolution(dist);
 }

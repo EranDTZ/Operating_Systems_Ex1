@@ -1,27 +1,19 @@
-#ifndef DIJKSTRA_H
-#define DIJKSTRA_H
+#ifndef DIJKSTRA_HPP
+#define DIJKSTRA_HPP
 
-#include <iostream>
 #include <vector>
-#include <limits>
-#include <algorithm>
+#include <climits> // כותרת נוספת
 
-class Graph {
-private:
-    int V;
-    std::vector<std::vector<int>> adjMatrix;
-
+class Dijkstra {
 public:
-    Graph(int vertices);
-
-    void addEdge(int src, int dest, int weight);
-
-    void dijkstra(int src);
-
+    Dijkstra();
+    void initialize(std::vector<std::vector<int>>::size_type V); // שינוי כאן
+    void readGraph();
+    void shortestPath();
 private:
-    int minDistance(std::vector<int> &dist, std::vector<bool> &sptSet);
-
-    void printSolution(std::vector<int> &dist);
+    int minDistance(const std::vector<int>& dist, const std::vector<bool>& sptSet);
+    void printSolution(const std::vector<int>& dist);
+    std::vector<std::vector<int>> graph;
 };
 
-#endif // DIJKSTRA_H
+#endif /* DIJKSTRA_HPP */

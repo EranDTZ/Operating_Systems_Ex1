@@ -1,29 +1,21 @@
-CC = g++
-CFLAGS = -std=c++11 -Wall
+CXX=clang++
+CXXFLAGS=-std=c++11 -Werror -Wsign-conversion --coverage
+VALGRIND_FLAGS=-v --leak-check=full --show-leak-kinds=all  --error-exitcode=99
 
-SRCDIR = src
-OBJDIR = obj
-BINDIR = bin
+SOURCES=dijkstra.cpp main.cpp
+OBJECTS=$(subst .cpp,.o,$(SOURCES))
 
-SOURCES := $(wildcard $(SRCDIR)/*.cpp)
-OBJECTS := $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
-EXECUTABLE = $(BINDIR)/main
+main: $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o main
 
-.PHONY: all clean
+tidy:
+	clang-tidy $(SOURCES) -checks=bugprone-*,clang-analyzer-*,cppcoreguidelines-*,performance-*,portability-*,readability-*,-cppcoreguidelines-pro-bounds-pointer-arithmetic,-cppcoreguidelines-owning-memory --warnings-as-errors=-* --
 
-all: $(EXECUTABLE)
+valgrind: main
+	valgrind --tool=memcheck $(VALGRIND_FLAGS) ./main 2>&1 | { egrep "lost| at " || true; }
 
-$(EXECUTABLE): $(OBJECTS) | $(BINDIR)
-	$(CC) $(CFLAGS) $^ -o $@
-
-$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BINDIR):
-	mkdir -p $(BINDIR)
-
-$(OBJDIR):
-	mkdir -p $(OBJDIR)
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) --compile $< -o $@
 
 clean:
-	rm -rf $(OBJDIR) $(BINDIR)
+	rm -f *.o main .gcno .gcda
