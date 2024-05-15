@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "failures.h": "c",
+        "poisson.h": "c",
+        "stdlib.h": "c"
+    }
+}

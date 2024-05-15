@@ -1,0 +1,50 @@
+# Debugging Program
+
+## Description
+This program was created for demonstration and experimentation purposes with the gdb (GNU Debugger) tool. The program includes several functions that generate errors when executed, and code that runs gdb on the core file created as a result of these errors.
+
+## Installation and Execution
+1. **Download the code**: Download the program code from the project directory.
+2. **Building the program**: In the terminal, run the command 'make all' to compile the program.
+3. **Running the program**: Run the program in the terminal (./main). Will start The program and generate a Core file.
+4. **Activate functions**: After running you will get a functions guide, to exit isnert '0'.
+4. **Debugging with gdb**: Run the program in the terminal with the command 'make debug' then 'c' to continue then 'run'. This will open gdb and allow you to analyze the errors.
+
+## Contents
+- **main.c**: Source code file of the program. !!*Includes functions that generate errors when executed*!!.
+- **makefile**: Makefile that allows to compile and run the program conveniently and quickly.
+
+## Notes
+- To run the program and check the errors, make sure that the gdb debugging tool is installed on your computer.
+- The program is intended for didactic use and experimentation with gdb and the debugging process.
+
+## first program - failures.c
+- **Contents**: stackOverflow , Division_byZero , Undefined_Value.
+-- errors:
+1. stackOverflow - function activates infinite recursion.
+
+
+gdb - file:///home/eran/Pictures/Screenshots/stackOverflow.png
+
+ddd - file:///home/eran/Pictures/Screenshots/stackOverflow_ddd_t.png
+
+file:///home/eran/Pictures/Screenshots/stackOverflow_ddd_f.png
+
+2. Division_byZero - 
+
+gdb - file:///home/eran/Pictures/Screenshots/Division_byZero.png
+-69:-29:85:16
+
+ddd - file:///home/eran/Pictures/Screenshots/Division_byZero_ddd_t.png
+
+file:///home/eran/Pictures/Screenshots/Division_byZero_ddd_f.png
+
+3. Undefined_Value - Pointer to undefined address.
+
+gdb - file:///home/eran/Pictures/Screenshots/Undefined_Value.png
+
+ddd - file:///home/eran/Pictures/Screenshots/Undefined_Value_ddd_t.png
+
+file:///home/eran/Pictures/Screenshots/Undefined_Value_ddd_f.png
+
+
