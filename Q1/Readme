@@ -10,15 +10,17 @@ This program was created for demonstration and experimentation purposes with the
 4. **Activate functions**: After running you will get a functions guide, to exit isnert '0'.
 4. **Debugging with gdb**: Run the program in the terminal with the command 'make debug' then 'c' to continue then 'run'. This will open gdb and allow you to analyze the errors.
 
-## Contents
-- **main.c**: Source code file of the program. !!*Includes functions that generate errors when executed*!!.
-- **makefile**: Makefile that allows to compile and run the program conveniently and quickly.
+## Files
+- `main.c`: Source code file of the program. !!*Includes functions that generate errors when executed*!!.
+- `failures.c`: Implements functions that will fail in different ways.
+- `failures.h`: Header file containing function declarations and necessary includes.
+- `makefile`: Makefile that allows to compile and run the program conveniently and quickly.
 
 ## Notes
 - To run the program and check the errors, make sure that the gdb debugging tool is installed on your computer.
 - The program is intended for didactic use and experimentation with gdb and the debugging process.
 
-## first program - failures.c
+## Errors screenshots - failures.c
 - **Contents**: stackOverflow , Division_byZero , Undefined_Value.
 -- errors:
 1. stackOverflow - function activates infinite recursion.

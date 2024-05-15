@@ -1,14 +1,15 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -lm
+CFLAGS = -Wall -Wextra -Werror -g
+LDFLAGS = -lm
 TARGET = main
 OBJECTS = main.o poisson.o
 
-.PHONY : all clean debug
+.PHONY: all clean debug
 
 all: $(TARGET)
 
 $(TARGET): $(OBJECTS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJECTS)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(TARGET) $(LDFLAGS)
 
 main.o: main.c poisson.h
 	$(CC) $(CFLAGS) -c main.c
@@ -18,6 +19,3 @@ poisson.o: poisson.c poisson.h
 
 clean:
 	rm -f $(TARGET) *.o
-
-debug: $(TARGET)
-	gdb ./$(TARGET) -c core

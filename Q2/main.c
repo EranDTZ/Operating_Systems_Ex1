@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "poisson.h"
+
 int main(int argc, char *argv[]) {
     if (argc != 3) {
         printf("Error\n");
