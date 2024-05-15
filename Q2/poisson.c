@@ -3,7 +3,7 @@
 #include <math.h>
 
 
-double factorial(int n) {
+long double factorial(int n) {
     if (n == 0) {
         return 1;
     } else {
@@ -11,17 +11,15 @@ double factorial(int n) {
     }
 }
 
-double poisson(double lambda, int k) {
+long double poisson(long double lambda, int k) {
     if (k < 0) {
         return 0;
     }
 
-    double result = pow(lambda, k) * exp(-lambda) / factorial(k);
+    long double result = pow(lambda, k) * exp(-lambda) / factorial(k);
     return result;
 }
 
-//**To compile the program execute the compilation command: gcc main.c -o poisson -lm
-//**To run the program Run in Bash: ./poisson <lambda> <k>
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
@@ -29,11 +27,11 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    double lambda = atof(argv[1]);
+    long double lambda = atof(argv[1]);
     int k = atoi(argv[2]);
 
-    double result = poisson(lambda, k);
-    printf("px(%d) = %.4f\n", k, result);
+    long double result = poisson(lambda, k);
+    printf("px(%d) = %.4Lf\n", k, result);
 
     return 0;
 }
