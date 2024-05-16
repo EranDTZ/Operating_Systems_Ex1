@@ -1,4 +1,4 @@
-CXX=clang++
+CXX=g++
 CXXFLAGS=-std=c++11 -Werror -Wsign-conversion --coverage
 VALGRIND_FLAGS=-v --leak-check=full --show-leak-kinds=all  --error-exitcode=99
 
@@ -18,4 +18,4 @@ valgrind: main
 	$(CXX) $(CXXFLAGS) --compile $< -o $@
 
 clean:
-	rm -f *.o main .gcno .gcda
+	rm -f *.o main *.gcno *.gcda *.gcov
