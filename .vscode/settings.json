@@ -9,7 +9,8 @@
         "tuple": "c",
         "type_traits": "c",
         "utility": "c",
-        "Dijkstra.C": "cpp"
+        "Dijkstra.C": "cpp",
+        "max_subArray_N.C": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

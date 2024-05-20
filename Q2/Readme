@@ -1,3 +1,4 @@
+```markdown
 **Poisson Calculator**
 
 **Description:**
@@ -20,4 +21,5 @@ px(k) = (λ^k * e^(-λ)) / k!
 ```
 $ ./main 2.5 3
 px(3) = 0.2139
+```
 ```

@@ -1,0 +1,15 @@
+Nezer Zaidenberg,054-5531415
+John Doe,123-4567890
+Jane Smith,098-7654321
+Alice Johnson,456-7890123
+Bob Brown,321-6549870
+Charlie Davis,654-3210987
+Emily Evans,987-1234560
+David Wilson,234-5678901
+Frank Miller,567-8901234
+Grace Lee,890-1234567
+Hannah King,123-7894560
+Ivan White,789-4561230
+Jack Black,456-1237890
+Karen Green,321-9876540
+Leo Harris,654-7893210

@@ -1,3 +1,4 @@
+```markdown
 # Debugging Program
 
 ## Description
@@ -21,32 +22,23 @@ This program was created for demonstration and experimentation purposes with the
 - The program is intended for didactic use and experimentation with gdb and the debugging process.
 
 ## Errors screenshots - failures.c
+
 - **Contents**: stackOverflow , Division_byZero , Undefined_Value.
 -- errors:
+
 1. stackOverflow - function activates infinite recursion.
-
-
-gdb - file:///home/eran/Pictures/Screenshots/stackOverflow.png
-
-ddd - file:///home/eran/Pictures/Screenshots/stackOverflow_ddd_t.png
-
-file:///home/eran/Pictures/Screenshots/stackOverflow_ddd_f.png
+![stackOverflow-gdb](images/stackOverflow.png)
+![stackOverflow-ddd-t](images/stackOverflow_ddd_t.png)
+![stackOverflow-ddd-f](images/stackOverflow_ddd_f.png)
 
 2. Division_byZero - 
-
-gdb - file:///home/eran/Pictures/Screenshots/Division_byZero.png
--69:-29:85:16
-
-ddd - file:///home/eran/Pictures/Screenshots/Division_byZero_ddd_t.png
-
-file:///home/eran/Pictures/Screenshots/Division_byZero_ddd_f.png
+![Division_byZero-gdb](images/Division_byZero.png)
+![Division_byZero-ddd-t](images/Division_byZero_ddd_t.png)
+![Division_byZero-ddd-f](images/Division_byZero_ddd_f.png)
 
 3. Undefined_Value - Pointer to undefined address.
+![Undefined_Value-gdb](images/Division_byZero.png)
+![Undefined_Value-ddd-t](images/Undefined_Value_ddd_t.png)
+![Undefined_Value-ddd-f](images/Undefined_Value_ddd_f.png)
 
-gdb - file:///home/eran/Pictures/Screenshots/Undefined_Value.png
-
-ddd - file:///home/eran/Pictures/Screenshots/Undefined_Value_ddd_t.png
-
-file:///home/eran/Pictures/Screenshots/Undefined_Value_ddd_f.png
-
-
+```
