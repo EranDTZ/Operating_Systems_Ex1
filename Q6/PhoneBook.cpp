@@ -4,36 +4,6 @@
 #include <fstream>
 #include <sys/wait.h>
 
-// void add2PB(const char* name, const char* phoneNumber) {
-//     int pipefd[2];
-//     if (pipe(pipefd) == -1) {
-//         perror("pipe");
-//         return;
-//     }
-
-//     pid_t pid = fork();
-//     if (pid == -1) {
-//         perror("fork");
-//         return;
-//     }
-
-//     if (pid == 0) {  // Child process
-//         close(pipefd[0]);  // Close unused read end
-//         dup2(pipefd[1], STDOUT_FILENO);  // Redirect stdout to pipe
-//         close(pipefd[1]);  // Close original write end after dup
-//         execlp("echo", "echo", name, ",", phoneNumber, nullptr);
-//         perror("execlp");
-//         _exit(EXIT_FAILURE);
-//     } else {  // Parent process
-//         close(pipefd[1]);  // Close unused write end
-//         int status;
-//         waitpid(pid, &status, 0);  // Wait for child to finish
-//         close(pipefd[0]);
-//     }
-// }
-
-
-
 void add2PB(const char* name, const char* phoneNumber) {
     int pipefd[2];
     if (pipe(pipefd) == -1) {
@@ -51,27 +21,9 @@ void add2PB(const char* name, const char* phoneNumber) {
         close(pipefd[0]);  // Close unused read end
         dup2(pipefd[1], STDOUT_FILENO);  // Redirect stdout to pipe
         close(pipefd[1]);  // Close original write end after dup
-
-        // Check if the phonebook file exists
-        std::ifstream infile("phonebook.txt");
-        bool fileExists = infile.good();
-        infile.close();
-
-        if (!fileExists) {
-            std::ofstream outfile("phonebook.txt");
-            if (!outfile.is_open()) {
-                perror("ofstream");
-                _exit(EXIT_FAILURE);
-            }
-            else {
-                outfile << name << "," << phoneNumber << std::endl;
-                outfile.close();
-            }
-        } else {
-            execlp("echo", "echo", name, ",", phoneNumber, ">>", "phonebook.txt", nullptr);
-            perror("execlp");
-            _exit(EXIT_FAILURE);
-        }
+        execlp("echo", "echo", name, ",", phoneNumber, nullptr);
+        perror("execlp");
+        _exit(EXIT_FAILURE);
     } else {  // Parent process
         close(pipefd[1]);  // Close unused write end
         int status;
